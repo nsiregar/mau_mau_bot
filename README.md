@@ -1,5 +1,7 @@
-# UNO Bot
-Telegram Bot that allows you to play the popular card game UNO via inline queries. The bot currently runs as [@mau_mau_bot](http://telegram.me/mau_mau_bot)
+# PegelUNOBot
+Telegram Bot that allows you to play the popular card game UNO via inline queries.  
+The bot currently runs as [@pegelunobot](http:/telegram.me/pegelunobot)  
+The bot based on [@mau_mau_bot](http://telegram.me/mau_mau_bot) source code from [Jannes Höke](https://github.com/jh0ker)
 
 To run the bot yourself, you will need: 
 - Python (tested with 3.4 and 3.5)
