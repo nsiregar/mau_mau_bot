@@ -154,6 +154,10 @@ def leave_game(bot, update):
     user = update.message.from_user
 
     try:
+        if game.owner.id == user.id:
+            game.owner = game.current_player.user
+            send_async(bot, chat.id, text=("Assign game owner to {name}").format(name=display_name(game.current_player.user)), reply_to_message_id=update.message.message_id)
+        
         gm.leave_game(user, chat)
 
     except NoGameInChatError:
@@ -321,7 +325,7 @@ def close_game(bot, update):
 
     game = games[-1]
 
-    if game.owner.id == user.id:
+    if user.id == game.owner.id:
         game.open = False
         send_async(bot, chat.id, text=_("Closed the lobby. "
                                         "No more players can join this game."))
@@ -473,6 +477,10 @@ def skip_player(bot, update):
 
     else:
         try:
+            if game.owner.id == user.id:
+                game.owner = game.current_player.user
+                send_async(bot, chat.id, text=("Assign game owner to {name}").format(name=display_name(game.current_player.user)), reply_to_message_id=update.message.message_id)
+ 
             gm.leave_game(skipped_player.user, chat)
             send_async(bot, chat.id,
                        text=__("{name1} was skipped four times in a row "
