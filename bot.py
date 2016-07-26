@@ -479,7 +479,10 @@ def skip_player(bot, update):
         try:
             if game.owner.id == user.id:
                 game.owner = game.current_player.user
-                send_async(bot, chat.id, text=("Assign game owner to {name}").format(name=display_name(game.current_player.user)), reply_to_message_id=update.message.message_id)
+                send_async(bot, chat.id, 
+                       text=("Assign game owner to {name}")
+                       .format(name=display_name(game.current_player.user)), 
+                       reply_to_message_id=update.message.message_id)
  
             gm.leave_game(skipped_player.user, chat)
             send_async(bot, chat.id,
