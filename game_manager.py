@@ -104,7 +104,7 @@ class GameManager(object):
         players = self.userid_players.get(user.id, list())
 
         if not player:
-            games = self.chatid_games[chat.id]
+            games = self.chatid_games.get(chat.id)
             for g in games:
                 for p in g.players:
                     if p.user.id == user.id:
