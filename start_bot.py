@@ -20,6 +20,13 @@
 # Modify this file if you want a different startup sequence, for example using
 # a Webhook
 
+from credentials import TOKEN
 
 def start_bot(updater):
-    updater.start_polling()
+    #updater.start_polling()
+    updater.start_webhook(listen = '0.0.0.0',
+                          port = '8443',
+                          url_path = 'TOKEN',
+                          key = 'private.key',
+                          cert = 'cert.pem',
+                          webhook_url = 'https://IP_ADDRESS:8443/TOKEN')

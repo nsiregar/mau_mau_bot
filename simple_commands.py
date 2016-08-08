@@ -53,10 +53,8 @@ help_text = ("Follow these steps:\n\n"
              "Press the <code>Current game: ...</code> button and select the "
              "group you want to play a card in.\n"
              "If you enjoy this bot, "
-             "<a href=\"https://telegram.me/storebot?start=mau_mau_bot\">"
-             "rate me</a>, join the "
-             "<a href=\"https://telegram.me/unobotupdates\">update channel</a>"
-             " and buy an UNO card game.")
+             "<a href=\"https://telegram.me/storebot?start=pegelunobot\">"
+             "rate me</a>"
 
 source_text = ("This bot is Free Software and licensed under the AGPL. "
                "The code is available here: \n"

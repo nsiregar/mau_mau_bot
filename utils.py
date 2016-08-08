@@ -27,7 +27,7 @@ from internationalization import _, __
 
 logger = logging.getLogger(__name__)
 
-TIMEOUT = 2.5
+TIMEOUT = 1.5
 
 
 def list_subtract(list1, list2):
