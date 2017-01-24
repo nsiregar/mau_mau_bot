@@ -62,6 +62,9 @@ def notify_me(bot, update):
                    text=_("Send this command in a group to be notified "
                           "when a new game is started there."))
     else:
+        send_async(bot,
+                   chat_id,
+                   text=_("You will be notified when a new game is started in {title}."))
         try:
             gm.remind_dict[chat_id].add(update.message.from_user.id)
         except KeyError:
@@ -455,7 +458,7 @@ def skip_player(bot, update):
 
     elif skipped_player.waiting_time > 0:
         skipped_player.anti_cheat += 1
-        skipped_player.waiting_time -= 30
+        skipped_player.waiting_time -= 45
         try:
             skipped_player.draw()
         except DeckEmptyError:
@@ -486,7 +489,7 @@ def skip_player(bot, update):
  
             gm.leave_game(skipped_player.user, chat)
             send_async(bot, chat.id,
-                       text=__("{name1} was skipped four times in a row "
+                       text=__("{name1} was skipped three times in a row "
                                "and has been removed from the game.\n"
                                "Next player: {name2}", multi=game.translate)
                        .format(name1=display_name(skipped_player.user),
@@ -494,7 +497,7 @@ def skip_player(bot, update):
 
         except NotEnoughPlayersError:
             send_async(bot, chat.id,
-                       text=__("{name} was skipped four times in a row "
+                       text=__("{name} was skipped three times in a row "
                                "and has been removed from the game.\n"
                                "The game ended.", multi=game.translate)
                        .format(name=display_name(skipped_player.user)))
@@ -605,7 +608,10 @@ def process_result(bot, update):
     elif result_id == 'pass':
         game.turn()
     elif result_id in c.COLORS:
-        game.choose_color(result_id)
+        try:
+            game.choose_color(result_id)
+        except:
+            pass
     else:
         reset_waiting_time(bot, player)
         do_play_card(bot, player, result_id)
